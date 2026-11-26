@@ -44,6 +44,7 @@ plain JavaScript; everything here is rewritten in strict TypeScript.
 - `await` in front of `jwt.sign` (app.ts) and `jwt.verify` (auth.ts) is unnecessary.
 - Move the JWT secret to `.env`.
 - `GET /user/email` reads `req.body`; should use a query string.
-- Check `package.json`: runtime packages may be listed under `devDependencies`.
+- `bcrypt` and `cookie-parser` are under `devDependencies`; move them to `dependencies`.
+- `@types/express` is v4 while `express` is v5; install `@types/express@5`.
 - Tighten `req.user` from `any` to the Mongoose document type.
 - Course progress: through Ep 10 (JWT and cookies). Next is Ep 11, Express Router.
