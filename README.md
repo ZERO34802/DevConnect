@@ -1,10 +1,10 @@
-# DevTinder code-along (Namaste Node, Season 2)
+# DevConnect — DevTinder code-along (Namaste Node, Season 2)
 
 Build Akshay's project here **as he teaches it**, but in TypeScript. Type everything yourself; no copy-paste.
 
 ## Setup (once)
 ```bash
-cd 02-node/codealong
+cd DevConnect
 npm install
 ```
 When he installs a package, install it here too. Always match the version where it matters:
@@ -30,9 +30,9 @@ If TypeScript slows you down too much on an episode, it's OK to write that episo
 | Ep | Topic | Watch | Code-along | Exercise |
 |---|---|---|---|---|
 | 00–02 | Intro, monolith vs microservices, HLD/LLD | 1.5x, take notes | none | none |
-| 03 | Creating the Express server | ☐ | ☐ | `exercises/n01` (after Ep 05) |
-| 04 | Routing & request handlers | ☐ | ☐ | `exercises/n01` |
-| 05 | Middlewares & error handlers | ☐ | ☐ | `exercises/n01` |
+| 03 | Creating the Express server | ☐ | ☐ | prep repo `exercises/n01` (after Ep 05) |
+| 04 | Routing & request handlers | ☐ | ☐ | prep repo `exercises/n01` |
+| 05 | Middlewares & error handlers | ☐ | ☐ | prep repo `exercises/n01` |
 | 06 | Database, schema & models (Mongoose) | ☐ | ☐ | next set |
 | 07 | Diving into the APIs | ☐ | ☐ | next set |
 | 08 | Data sanitization & schema validation | ☐ | ☐ | next set |
