@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 
 export const profileRouter = express.Router();
 
-profileRouter.get("/profile",userAuth, async (req, res)=> {
+profileRouter.get("/profile/view",userAuth, async (req, res)=> {
     try {
         const userProfile = req.user
         if(!userProfile) {

@@ -1,5 +1,6 @@
 import validator from "validator";
 import HttpError from "./HttpError.js";
+import mongoose from "mongoose";
 
 interface UserSignUpData {
     firstName : string;
@@ -50,7 +51,7 @@ export function UserSignUpDataValid(userData:unknown): userData is UserSignUpDat
             && "email" in userData && typeof userData.email === "string" && validator.isEmail(userData.email)
             && "age" in userData && typeof userData.age === "number" && userData.age >= 18 && Number.isInteger(userData.age)
             && "userId" in userData && typeof userData.userId === "string" && userData.userId.trim() !== ""
-            && "password" in userData && typeof userData.password === "string" && validator.isStrongPassword(userData.password) && (/\s/).test(userData.password)
+            && "password" in userData && typeof userData.password === "string" && validator.isStrongPassword(userData.password) && !(/\s/).test(userData.password)
         ) {
             let isEligible = Object.keys(userData).every((key) => {
                 return ALLOWED_USER_SIGN_UP_INFO.includes(key);
@@ -60,7 +61,7 @@ export function UserSignUpDataValid(userData:unknown): userData is UserSignUpDat
             }else throw new Error("Invalid Request Data");
         }
     }
-    throw new Error("Invalid Request Data");
+    throw new HttpError(400,"Invalid Request Data");
 }
 
 export const validateUserLoginData = (requestBody : unknown) : requestBody is {email : string, password: string}=> {
@@ -111,3 +112,19 @@ export const validPasswordUpdateData = (requestBody: unknown) : requestBody is U
         throw new Error("Invalid Request Data");
     }
 }
+
+export const validateConnectionRequestData = (reqParams: unknown) : reqParams is {status : "interested" | "ignored"; toUserId : string} =>  {
+    if(typeof reqParams === "object" && reqParams !== null
+        && "status" in reqParams && typeof reqParams.status === "string"
+        && "toUserId" in reqParams && typeof reqParams.toUserId === "string") {
+            const status = reqParams.status;
+            const toUserId = reqParams.toUserId;
+            if((status === "interested" || status === "ignored") && (mongoose.isValidObjectId(toUserId))) {
+                return true;
+            }else {
+                throw new HttpError(400, "Invalid Connection Type or UserId");
+            }
+    }else {
+        throw new HttpError(400, "Invalid Request Parameters");
+    }
+}   
